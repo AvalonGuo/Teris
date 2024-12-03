@@ -1,0 +1,6 @@
+<mujoco>
+  <compiler angle="radian" autolimits="true"/>
+  <worldbody>
+    <geom type="box" size="0.037 0.00925 0.0045" pos="0 0 0.0045" rgba="1 0.1 0.1 1" density="1000"/>
+  </worldbody>
+</mujoco>

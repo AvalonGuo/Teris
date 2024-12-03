@@ -1,0 +1,6 @@
+setup.py
+matchteris.egg-info/PKG-INFO
+matchteris.egg-info/SOURCES.txt
+matchteris.egg-info/dependency_links.txt
+matchteris.egg-info/requires.txt
+matchteris.egg-info/top_level.txt

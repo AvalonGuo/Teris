@@ -1,0 +1,53 @@
+<mujoco model="sucker">
+  <statistic center="0.3 0 0.4" extent="1.5"/>
+  <option integrator="implicitfast"/>
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.3 0.5 0.7" rgb2="0 0 0" width="512" height="3072"/>
+    <texture type="2d" name="groundplane" builtin="checker" mark="edge" rgb1="0.2 0.3 0.4" rgb2="0.1 0.2 0.3"
+      markrgb="0.8 0.8 0.8" width="300" height="300"/>
+    <material name="groundplane" texture="groundplane" texuniform="true" texrepeat="5 5" reflectance="0.2"/>
+  </asset>
+  <default>
+    <default class="active_adhesion">
+      <!--
+        Geoms in the active_adhesion class are "inflated" with a margin of 1cm, but contacts are
+        activated only at a depth gap of 1cm, leading to a layer of inactive contacts at a 1cm
+        distance from the surface. However the contacts can be used by the adhesion actuator.
+      -->
+      <geom rgba=".8 .5 .5 1" margin=".00045" gap=".00045"/>
+    </default>
+    <default class="object">
+      <geom rgba=".5 .8 .5 1" density="100"/>
+    </default>
+  </default>
+  <worldbody>
+    <light pos="0 0 1.5" dir="0 0 -1" directional="true" castshadow="false"/>
+    <geom name="floor" pos="0 0 -0.0001" size="5 5 0.0001" type="plane" material="groundplane"/>
+    <body name="teris" pos="0 0 0">
+      <geom type="box" size="0.0185 0.00925 0.0045" pos="0 0 0.0045" rgba="0.1 0.85 0.1 1" density="100"/>
+      <geom type="box" size="0.0185 0.00925 0.0045" pos="-0.0185 -0.0185 0.0045" rgba="0.1 0.85 0.1 1" density="100"/>
+      <!-- <geom type="box" size="0.00925 0.00925 0.0045" pos="0 0 0.0045" rgba="0.647 0.165 0.165 1" density="100"/>
+      <geom type="box" size="0.02775 0.00925 0.0045" pos="0 -0.0185 0.0045" rgba="0.647 0.165 0.165 1" density="100"/> -->
+      <!-- <geom type="box" size="0.0185 0.00925 0.0045" pos="0 0 0.0045" rgba="0.1 0.1 0.85 1" density="100"/>
+      <geom type="box" size="0.0185 0.00925 0.0045" pos="0.0185 -0.0185 0.0045" rgba="0.1 0.1 0.85 1" density="100"/> -->
+      <!-- <geom type="box" size="0.0185 0.0185 0.0045" pos="0 0 0.0045" rgba="1 0.647 0 1" density="100"/> -->
+      <freejoint/>
+    </body>
+    <body name="vaccum" pos="0 0 0.2" gravcomp="0.98">
+      <geom type="cylinder" size="0.00925 0.05" rgba="0.647 0.647 0.647 1"/>
+      <joint name="vaccum_z" type="slide" axis="0 0 1" damping=".01" range="-0.15 .25"/>
+      <body name="vaccum_gripper" pos="0 0 -.05" childclass="active_adhesion">
+        <!-- <geom type="cylinder" size="0.00925 0.01" rgba="1 0.647 0.647 1"/> -->
+        <site name="force_sensor" group="3"/>
+        <geom type="box" size="0.0045 0.0045 0.0045" pos="-0.0045 -0.0045 -0.0045" />
+        <geom type="box" size="0.0045 0.0045 0.0045" pos="0.0045 -0.0045 -0.0045" />
+        <geom type="box" size="0.0045 0.0045 0.0045" pos="0.0045 0.0045 -0.0045" />
+        <geom type="box" size="0.0045 0.0045 0.0045" pos="-0.0045 0.0045 -0.0045"/>
+      </body>
+    </body>
+  </worldbody>
+  <actuator>
+    <position joint="vaccum_z" ctrlrange="-0.15 .25" kp="10" kv="1"/>
+    <adhesion name="adhere_vaccum" body="vaccum_gripper" ctrlrange="0 1" gain="2"/>
+  </actuator>
+</mujoco>

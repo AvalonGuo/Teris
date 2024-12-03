@@ -1,0 +1,21 @@
+<mujoco model="sucker">
+  <option integrator="implicitfast"/>
+  <default>
+    <default class="active_adhesion">
+      <geom rgba=".8 .5 .5 1" margin=".00045" gap=".00045"/>
+    </default>
+  </default>
+  <worldbody>
+    <geom type="cylinder" size="0.00925 0.05" rgba="0.647 0.647 0.647 1"/>
+    <body name="vaccum_gripper" pos="0 0 .05" childclass="active_adhesion">
+      <site name="vaccum_site" group="3" pos="0 0 0.009"/>
+      <geom type="box" size="0.0045 0.0045 0.0045" pos="-0.0045 -0.0045 0.0045" />
+      <geom type="box" size="0.0045 0.0045 0.0045" pos="0.0045 -0.0045 0.0045" />
+      <geom type="box" size="0.0045 0.0045 0.0045" pos="0.0045 0.0045 0.0045" />
+      <geom type="box" size="0.0045 0.0045 0.0045" pos="-0.0045 0.0045 0.0045"/>
+    </body>
+  </worldbody>
+  <actuator>
+    <adhesion name="adhere_vaccum" body="vaccum_gripper" ctrlrange="0 1" gain="1"/>
+  </actuator>
+</mujoco>

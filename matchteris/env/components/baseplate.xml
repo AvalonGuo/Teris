@@ -1,0 +1,16 @@
+<mujoco>
+  <compiler angle="radian" autolimits="true"/>
+  <asset>
+    <texture name="texplate" type="2d" builtin="checker" rgb1=".9 .9 .9" rgb2=".9 0.9 0.9"
+        width="512" height="512" mark="cross" markrgb=".1 .1 .1"/>
+    <material name="matplate" reflectance="0." texture="texplate" texrepeat="10 14" texuniform="false"/>
+  </asset>
+  <worldbody>
+    <geom type="box" size="0.001 0.1295 0.0045" pos="-0.0935 0 0.0045" rgba="0.7 0.7 0.7 1" />
+    <geom type="box" size="0.001 0.1295 0.0045" pos="0.0935 0 0.0045" rgba="0.7 0.7 0.7 1"/>
+    <geom type="box" size="0.0945 0.001 0.0045" pos="0 -0.1295 0.0045" rgba="0.7 0.7 0.7 1"/>
+    <geom type="box" size="0.0945 0.001 0.0045" pos="0 0.1295 0.0045" rgba="0.7 0.7 0.7 1"/>
+    <geom type="plane" size="0.0925 0.1295 0.0001" pos="0 0 0.0001" rgba="0.9 0.9 0.9 1" material="matplate" friction="2 0.05 0.001"/>
+    <!-- <geom type="box" size="0.0925 0.1295 0.00225" pos="0 0 0.00225" rgba="0.9 0.9 0.9 1" material="matplate" friction="2 0.005 0.0001"/> -->
+  </worldbody>
+</mujoco>

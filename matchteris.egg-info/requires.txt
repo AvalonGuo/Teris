@@ -1,0 +1,5 @@
+mujoco
+gymnasium
+dm-control
+opencv-python
+numpy==1.26
