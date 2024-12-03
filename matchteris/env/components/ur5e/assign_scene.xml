@@ -46,7 +46,7 @@
         <camera name="side" mode="fixed" pos="0 0 0"  focal="0.009665945 0.009665945"  sensorsize="0.01 0.01" resolution="640 640" />
     </body>
     <body name="target" pos="-0.415 0 .8" euler="3.14 0 -1.57"  mocap="true">
-      <geom type="box" size=".009 .009 .009" contype="0" conaffinity="0" rgba=".6 .3 .3 .5"/>
+      <geom type="box" size=".009 .009 .0045" contype="0" conaffinity="0" rgba=".6 .3 .3 .5"/>
     </body>
   </worldbody>
 </mujoco>
