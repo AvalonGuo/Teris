@@ -101,7 +101,7 @@
             <!-- <site name="tip" pos="-0.02 0 0.045" size="0.008" rgba="1 0 0 1" type="sphere" group="1" /> -->
           </body>
         </body>
-        <site name="gripper_center" pos="0 0 0.18" size="0.01 0.01 0.01" rgba="1 0 0 1" type="sphere" group="1" />
+        <site name="gripper_center" pos="0 0 0.18" size="0.0045" rgba="1 0 0 1" type="sphere" group="1" />
         
     </worldbody>
 

@@ -7,7 +7,7 @@ import mujoco.viewer
 from dm_control import mjcf
 from matchteris.env import *
 
-class Assemble:
+class Assemble_Clamp:
     def __init__(self,render_mode="human"):
 
         self._Ur5e = UR5E_Scene()
@@ -23,7 +23,7 @@ class Assemble:
 
         #Robotic's Control
         self.attachment_site_id = self.model.site(self._Ur5e.attachment_site_name).id
-        self.vaccum_site_id = self.model.site(self._vaccum.vaccum_site_name).id
+        self.gripper_site_id = self.model.site(self._ag95.gripper_site_name).id
         self.link_ids = [self.model.body(link_name).id for link_name in self._Ur5e.link_names]
         self.jnt_ids = [self.model.joint(joint_name).id for joint_name in self._Ur5e.joint_names]
         self.act_ids = [self.model.actuator(actuator_name).id for actuator_name in self._Ur5e.actuator_names]
@@ -41,7 +41,7 @@ class Assemble:
         self.image_renderer = mujoco.Renderer(self.model,self.render_height,self.render_width)
         self._timestep = self.model.opt.timestep
 
-        self.teris_dir = "matchteris/env/components/teris"
+        self.teris_dir = os.path.join('matchteris','env','components','teris')
         self.teris_list = [f for f in os.listdir(self.teris_dir) if f.endswith(".xml")]
         self.teris_mjcfs = []
         self.teris_handles = []
@@ -70,14 +70,14 @@ class Assemble:
         site_quat_conj = np.zeros(4)
         error_quat = np.zeros(4)
         # Position error.
-        error_pos[:] = self.data.mocap_pos[self.mocap_id] - self.data.site(self.vaccum_site_id).xpos
+        error_pos[:] = self.data.mocap_pos[self.mocap_id] - self.data.site(self.gripper_site_id).xpos
         # Orientation error.
-        mujoco.mju_mat2Quat(site_quat, self.data.site(self.vaccum_site_id).xmat)
+        mujoco.mju_mat2Quat(site_quat, self.data.site(self.gripper_site_id).xmat)
         mujoco.mju_negQuat(site_quat_conj, site_quat)
         mujoco.mju_mulQuat(error_quat, self.data.mocap_quat[self.mocap_id], site_quat_conj)
         mujoco.mju_quat2Vel(error_ori, error_quat, 1.0)
         # Get the Jacobian with respect to the end-effector site.
-        mujoco.mj_jacSite(self.model, self.data, jac[:3], jac[3:], self.vaccum_site_id)
+        mujoco.mj_jacSite(self.model, self.data, jac[:3], jac[3:], self.gripper_site_id)
 
         # Solve system of equations: J @ dq = error.
         dq = jac.T @ np.linalg.solve(jac @ jac.T + diag, error)
@@ -127,6 +127,7 @@ class Assemble:
         self.data.ctrl[-1] = 0
 
     def generate_blocks(self):
+        # detach the generated blocks,generate the new block and reload
         for teris in self.teris_mjcfs:
             teris.mjcf_root.detach()
         self.teris_mjcfs = []
@@ -152,6 +153,7 @@ class Assemble:
         return list(block_xpos)
     
     def get_camera_data(self,camera_name:str="side"):
+        # get rgb and depth data from the camera 
         self.image_renderer.enable_depth_rendering()
         self.image_renderer.update_scene(self.data,camera=camera_name)
         depth_data = self.image_renderer.render()

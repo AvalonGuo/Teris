@@ -7,7 +7,7 @@ import mujoco.viewer
 from dm_control import mjcf
 from matchteris.env import *
 
-class Assemble:
+class Assemble_Suction:
     def __init__(self,render_mode="human"):
 
         self._Ur5e = UR5E_Scene()
@@ -196,4 +196,8 @@ class Assemble:
         cam_intrinsics = np.array([[fx, 0, cx], [0, fy, cy], [0, 0, 1]])
         return cam_intrinsics
     
+    def get_eff_error(self):
+        error_pos = np.zeros(3)
+        error_pos[:] = self.data.mocap_pos[self.mocap_id] - self.data.site(self.vaccum_site_id).xpos
+        return error_pos
 
