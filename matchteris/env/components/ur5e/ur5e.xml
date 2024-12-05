@@ -120,7 +120,7 @@
                   <body name="tool0_link" pos="0 0.1 0" quat="-1 1 0 0">
                     <site name="attachment_site" pos="0 0 0" quat="1 0 0 0"/>
                   </body>
-                  <body name="ur5e_cam" pos="0.01 0.065 0.095" quat="1 1 0 0">
+                  <body name="ur5e_cam" pos="0.01 0.065 0.06" quat="1 1 0 0">
                     <geom size="0.0075 0.01" pos="-0.01025 0 -0.02"  type="cylinder" class="visual"/>
                     <!-- <camera name="eyeinhand" mode="fixed" fovy="60" pos="0.01 0.065 0.065"  axisangle="1 1 1 0"/> -->
                     <camera name="eyeinhand" mode="fixed" fovy="60" pos="-0.01025 0 -0.02"  axisangle="1 1 1 0"/>

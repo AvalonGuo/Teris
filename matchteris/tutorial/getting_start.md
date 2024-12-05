@@ -23,3 +23,4 @@ This directory contains two environments：[grasp](matchteris/env/assemble_clamp
  - [gtg](matchteris/demo/ground_truth_grasp.py) and [gts](matchteris/demo/ground_truth_suck.py) illustrate how to suck/grasp using ground-truth position.
  - [mocap_control](matchteris/demo/mocap_control.py) illustrate the mocap concept.
  - [use_camera](matchteris/demo/use_camera.py) shows how to get rgb/depth data from the camera.
+ - [collect_shape](matchteris/demo/match_shape.py) shows how to use [cv2.matchShapes](https://docs.opencv.org/2.4/modules/imgproc/doc/structural_analysis_and_shape_descriptors.html?highlight=fitellipse) method. 
