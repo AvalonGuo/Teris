@@ -20,7 +20,7 @@ def suck():
         env.data.mocap_pos = block_xpos
         env.mocap_ctrl()
 def move_to():
-    target_pos = [-0.4,0.,0.45]
+    target_pos = [-0.4,0.,0.425]
     for i in range(1500):
         env.data.ctrl[-1] = 1
         env.data.mocap_pos = target_pos
