@@ -146,10 +146,10 @@ class Assemble_Clamp:
                 self.teris_mjcfs.append(teris)
                 self._Ur5e.attach_block(teris.mjcf_root,pos=attach_pos)
         self.reload_simulation()
-
-    def get_block_xpos(self,index):
-        handle = self.block_handles[index]
-        block_xpos = self._physics.bind(handle).xpos
+        
+    def get_block_xpos(self,name):
+        block_id = self.model.body(name).id
+        block_xpos = self.data.xpos[block_id]
         return list(block_xpos)
     
     def get_camera_data(self,camera_name:str="side"):
@@ -198,4 +198,8 @@ class Assemble_Clamp:
         cam_intrinsics = np.array([[fx, 0, cx], [0, fy, cy], [0, 0, 1]])
         return cam_intrinsics
     
+    def get_eff_error(self):
+        error_pos = np.zeros(3)
+        error_pos[:] = self.data.mocap_pos[self.mocap_id] - self.data.site(self.gripper_site_id).xpos
+        return error_pos
 

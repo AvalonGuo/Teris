@@ -14,3 +14,12 @@ Using the mujoco.viewer,we can quikly preview the mjcf files ended with xml. Now
 This project uses mujoco.viewer to render the simulation env.Mujoco viewer contains two part：right_ui_tab and left ui tab.
 - The right ui tab contains joint and actuactor.You can drag the actuator slider to control the robot.
 - The left ui tab contains many parts.We just need to pay attention to  *Rendering's Camera and Label*.
+
+### env directory
+This directory contains two environments：[grasp](matchteris/env/assemble_clamp.py)(not recommanded) and [suck](matchteris/env/assemble_suction.py)(recommanded).And the 'components' directory includes some terises and robots.
+
+ ### demo
+ This directory's files demostrates how to use the environment.
+ - [gtg](matchteris/demo/ground_truth_grasp.py) and [gts](matchteris/demo/ground_truth_suck.py) illustrate how to suck/grasp using ground-truth position.
+ - [mocap_control](matchteris/demo/mocap_control.py) illustrate the mocap concept.
+ - [use_camera](matchteris/demo/use_camera.py) shows how to get rgb/depth data from the camera.

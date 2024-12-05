@@ -16,6 +16,6 @@
     </body>
   </worldbody>
   <actuator>
-    <adhesion name="adhere_vaccum" body="vaccum_gripper" ctrlrange="0 1" gain="1"/>
+    <adhesion name="adhere_vaccum" body="vaccum_gripper" ctrlrange="0 1" gain="2"/>
   </actuator>
 </mujoco>
