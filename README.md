@@ -10,7 +10,11 @@ Matchteris(this repo) is a simulation environment designed for [ROS机器人俄�
 ## TODO
 - [ ] fixes the block's unrealistic deformation.
 - [ ] implements some simple match algorithm.
-- [ ] improves the ik algorithmn,reduces the end-effector's position error.
+- [x] improves the ik algorithmn,reduces the end-effector's position error.
+
+## :fire: Update
+* __2024.12.2 fixed the IK problem by adding gravity compensation manually. Now, the eef max position error is $[\pm 0.029,\pm 0.014,\pm 0.157]$ caculated by [this file](/matchteris/demo/caculate_xyzerror.py).__
+* __added move_to() fuction .__ 
 
 ## [Getting start](matchteris/tutorial/getting_start.md)
 ### Install the package
@@ -23,3 +27,6 @@ pip install -e.
 - [demo](matchteris/demo)：illustrates how to create an env and render it.
 - [env](matchteris/env): includes a component directory and two type environments(clamp/suction).
 - [tutorial](matchteris/tutorial/getting_start.md)：the tutorial for mujoco and this project.
+
+## References
+*  __Differential Inverse Kinematics algorithm modified from [mjctrl] repository(https://github.com/kevinzakka/mjctrl).__

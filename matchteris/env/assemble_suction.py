@@ -112,6 +112,11 @@ class Assemble_Suction:
         mujoco.mju_mat2Quat(mocap_quat,mocap_xmat)
         self.data.mocap_quat[self.mocap_id] = mocap_quat
 
+    def move_to(self,position,time_scale:int=1):
+        self.data.mocap_pos[self.mocap_id] = position
+        for i in range(1000*time_scale):
+            self.mocap_ctrl()
+
     def reload_simulation(self):
         if self.viewer != None:
             self.viewer.close()
@@ -198,6 +203,7 @@ class Assemble_Suction:
     
     def get_eff_error(self):
         error_pos = np.zeros(3)
-        error_pos[:] = self.data.mocap_pos[self.mocap_id] - self.data.site(self.vaccum_site_id).xpos
+        error_pos[:] = np.abs(self.data.mocap_pos[self.mocap_id] - self.data.site(self.vaccum_site_id).xpos)
         return error_pos
 
+    

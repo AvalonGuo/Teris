@@ -1,6 +1,8 @@
 from matchteris.env import Assemble_Suction
 env = Assemble_Suction()
 env.generate_blocks()
+
+
 def suck():
     for i in range(500):
         env.mocap_ctrl()

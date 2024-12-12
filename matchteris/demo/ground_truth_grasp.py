@@ -24,7 +24,7 @@ def move_to():
         env.data.mocap_pos = target_pos
         env.mocap_ctrl()
     target_pos[1]+=0.2
-    for i in range(1500):
+    for i in range(150000):
         env.data.mocap_pos = target_pos
         env.mocap_ctrl()
 grasp()
