@@ -30,4 +30,4 @@ pip install -e.
 - [tutorial](matchteris/tutorial/getting_start.md)：the tutorial for mujoco and this project.
 
 ## References
-*  __Differential Inverse Kinematics algorithm modified from [mjctrl] repository(https://github.com/kevinzakka/mjctrl).__
+*  __Differential Inverse Kinematics algorithm modified from [mjctrl](https://github.com/kevinzakka/mjctrl) repository.__
