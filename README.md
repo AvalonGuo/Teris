@@ -13,7 +13,7 @@ Matchteris(this repo) is a simulation environment designed for [ROS机器人俄�
 - [x] improves the ik algorithmn,reduces the end-effector's position error.
 
 ## :fire: Update
-* __2024.12.2 fixed the IK problem by adding gravity compensation manually. Now, the eef max position error is $[\pm 0.029,\pm 0.014,\pm 0.157]mm$ caculated by [this file](/matchteris/demo/caculate_xyzerror.py).__
+* __2024.12.2 fixed the IK problem by adding gravity compensation manually. Now, the eef max position error is $[\pm 0.029,\pm 0.014,\pm 0.157]\left(unit \ mm\right)$ caculated by [this file](/matchteris/demo/caculate_xyzerror.py).__
 * __added move_to() fuction .__ 
 
 ## [Getting start](matchteris/tutorial/getting_start.md)
