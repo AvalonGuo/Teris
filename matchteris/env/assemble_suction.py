@@ -111,7 +111,9 @@ class Assemble_Suction:
         mocap_xmat = (rotate_xmat@mocap_xmat).flatten()
         mujoco.mju_mat2Quat(mocap_quat,mocap_xmat)
         self.data.mocap_quat[self.mocap_id] = mocap_quat
-
+        for i in range(1000):
+            self.mocap_ctrl()
+            
     def move_to(self,position,time_scale:int=1):
         self.data.mocap_pos[self.mocap_id] = position
         for i in range(1000*time_scale):
